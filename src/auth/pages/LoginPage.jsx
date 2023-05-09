@@ -1,11 +1,22 @@
-import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+import { AuthContext } from "../context"
+
+import queryString from 'query-string'
 
 export const LoginPage = () => {
     
     const navigate = useNavigate()
+    const location = useLocation()
+    const { authStatea, login } = useContext(AuthContext)
+
+    const { redirect } = queryString.parse(location.search)
     
     const onLogin = () => {
-        navigate('/', {
+
+        login('yader')
+
+        navigate(redirect ?? '/', {
             replace: true
         })
     }

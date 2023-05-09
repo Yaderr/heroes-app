@@ -1,6 +1,8 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { NavBar } from '../../ui'
 import { DcPage, HeroPage, MarvelPage, SearchPage } from '../pages'
+import { useContext, useEffect } from 'react'
+import { AuthContext } from '../../auth'
 
 export const HeroesRoutes = () => {
     
