@@ -30,7 +30,7 @@ export const HeroPage = () => {
         </button>
             <div className="flex justify-center animate__animated animate__fadeIn">
                 <div>
-                    <img className='rounded-lg border-2' src={`../assets/heroes/${hero.id}.jpg`} alt="" />
+                    <img className='rounded-lg border-2' src={`./heroes/${hero.id}.jpg`} alt="" />
                 </div>
                 <div className='ml-10 max-w-[500px]'>
                     <h1 className='text-2xl font-bold'>{ hero.superhero }</h1>
