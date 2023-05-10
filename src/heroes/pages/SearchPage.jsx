@@ -2,8 +2,14 @@ import queryString from 'query-string'
 import { useLocation, useNavigate } from "react-router-dom"
 import { useForm } from "../../hooks/useForm"
 import { HeroList } from "../components/HeroList"
-import { searchHeroBySuperHero } from '../helpers'
+import { favoritesReducer, searchHeroBySuperHero } from '../helpers'
 import { HeroCard } from '../components/HeroCard'
+import { useEffect, useReducer } from 'react'
+import { types } from '../types/types'
+
+const init = () => {
+    return JSON.parse(localStorage.getItem('favorites') || '[]')
+}
 
 export const SearchPage = () => {
 
@@ -24,6 +30,29 @@ export const SearchPage = () => {
         if(searchText.trim().length <= 1) return 
 
         navigate(`?q=${searchText}`)        
+    }
+
+    const [favState, dispatch] = useReducer(favoritesReducer, [], init)
+
+    const favIds = favState.map(fav => fav.id)
+
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favState))
+    },[favState])
+    
+    const onClickFav = (heroe, isFav) => {
+
+        let action = {
+            payload: heroe
+        }
+
+        if(isFav) {
+            action.type = types.removeFavorites
+        }else {
+            action.type = types.addFavorite
+        }
+        
+        dispatch(action)
     }
     
     return (
@@ -54,7 +83,7 @@ export const SearchPage = () => {
 
             {
                 results.map((hero) => (
-                    <HeroCard key={hero.id} {...hero} />
+                    <HeroCard key={hero.id} heroe={hero} isFav={favIds.includes(hero.id)} onClickFav={onClickFav} />
                 ))
             }
         </>
