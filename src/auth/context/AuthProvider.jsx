@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('user')
         dispatch(action)
     }
-
+    
     return (
         <AuthContext.Provider value={{ authState, login, logout }}>
             { children }

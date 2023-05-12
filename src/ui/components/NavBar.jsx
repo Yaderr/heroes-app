@@ -9,7 +9,7 @@ export const NavBar = () => {
 
     const handleLogout = () => {
         logout()
-        //navigate('/login')
+        navigate('/login')
     }
 
     return (

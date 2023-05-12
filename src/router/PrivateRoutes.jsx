@@ -9,7 +9,5 @@ export const PrivateRoutes = ({ children }) => {
 
     const lastPath = pathname + search
 
-    console.log(lastPath);
-
     return authState.logged ? children : <Navigate to={`/login?redirect=${lastPath}`} />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 }

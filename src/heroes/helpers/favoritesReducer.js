@@ -11,6 +11,6 @@ export const favoritesReducer = (state = [], action) => {
         case types.myFavorites:
             return state
         default:
-            state
+            return state
     }
 }
